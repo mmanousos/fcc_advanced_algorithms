@@ -1,4 +1,24 @@
 
+/*-- PSEUDOCODE --*/
+
+// check if property exists
+// if true  
+    // if value  === "", delete property
+    // else if property is not 'tracks', set value
+    // else (property is 'tracks'), push value to array & set array as value
+// if false 
+    // if property is not 'tracks', set value
+    // else (property is 'tracks'), create new array, push value to array & set array as value
+    
+
+
+
+
+
+
+
+// First draft (functional)
+
 var collection = {
     "2548": {
       "album": "Slippery When Wet",

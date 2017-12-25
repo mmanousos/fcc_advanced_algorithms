@@ -29,7 +29,24 @@ var collectionCopy = JSON.parse(JSON.stringify(collection));
 
 // Only change code below this line
 function updateRecords(id, prop, value) {
-  
+
+  var nested = collection[id]; // set the appropriate ID to a variable for ease of accessing
+  var propCheck = nested.hasOwnProperty(prop); // check if the property already exists
+  if (propCheck == true) { //  if it does,  
+    if (value === "") {  // and the new value is empty
+      delete nested[prop]; // delete the property
+    } else if (prop !== 'tracks') { // if the property isn't 'tracks'
+      nested[prop] = value;   // add the value to the exisiting property
+    } else {
+      nested[prop].push(value);
+    }
+  } else if (prop !== 'tracks' )  {  // if it doesn't exist & isn't 'tracks'  
+    nested[prop] = value; // add it to the appropriate object
+  } else { // if it doesn't exist and is tracks
+    var propName = [];  // create an empty array
+    propName.push(value); // push the value to the new array
+    nested[prop] = propName; // add this key value pair to the appropriate object
+  }
   
   return collection;
 }

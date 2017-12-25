@@ -1,4 +1,17 @@
 
+/*-- PSEUDOCODE --*/
+
+// reduce all arrays to single array
+// remove all repaeated elements
+    // doesn't work because need to know if the element is in every array to count. 
+
+// create empty array to return with result
+// get first element of first array
+// check if it 1) doesn't already exist in the new array, and 2) exists in every subsequent array
+    // if yes, move to next element
+    // if no, push to new array
+
+
 /*-- ASSIGNMENT --*/
 
 Symmetric Difference
@@ -14,7 +27,7 @@ Symmetric Difference: https://www.youtube.com/watch?v=PxffSUQRkG4
 
 sym([1, 2, 3], [5, 2, 1, 4]) should return [3, 4, 5].
 sym([1, 2, 3], [5, 2, 1, 4]) should contain only three elements.
-sym([1, 2, 5], [2, 3, 5], [3, 4, 5]) should return [1, 4, 5]
+sym([1, 2, 5], [2, 3, 5], [3, 4, 5]) should return [1, 4, 5].
 sym([1, 2, 5], [2, 3, 5], [3, 4, 5]) should contain only three elements.
 sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]) should return [1, 4, 5].
 sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]) should contain only three elements.

@@ -1,4 +1,60 @@
 
+// refactored 
+
+var collection = {
+    "2548": {
+      "album": "Slippery When Wet",
+      "artist": "Bon Jovi",
+      "tracks": [ 
+        "Let It Rock", 
+        "You Give Love a Bad Name" 
+      ]
+    },
+    "2468": {
+      "album": "1999",
+      "artist": "Prince",
+      "tracks": [ 
+        "1999", 
+        "Little Red Corvette" 
+      ]
+    },
+    "1245": {
+      "artist": "Robert Palmer",
+      "tracks": [ ]
+    },
+    "5439": {
+      "album": "ABBA Gold"
+    }
+};
+// Keep a copy of the collection for tests
+var collectionCopy = JSON.parse(JSON.stringify(collection));
+
+// Only change code below this line
+function updateRecords(id, prop, value) {
+
+ var nested = collection[id]; // set the appropriate ID to a variable for ease of accessing
+ var propCheck = nested.hasOwnProperty(prop); // check if the property exists
+  if ((value !== "") && (prop !== 'tracks')) { // if the value isn't empty & the property isn't 'tracks'
+   nested[prop] = value;  // add the property & value
+  } else if (propCheck === true ) { // but if property exists
+    if (value === "") {  // and if the new value is empty
+     delete nested[prop]; // delete the property
+    } else { // if the property exists and is tracks
+    nested[prop].push(value); // push the value to the new array   
+    }
+  } else { // if the property doesn't exist and is tracks
+     var propName = [];  // create an empty array
+     propName.push(value); // push the value to the new array
+     nested[prop] = propName; // add this key value pair to the appropriate object
+    }
+  
+  return collection;
+}
+
+// Alter values below to test your code
+updateRecords(5439, "artist", "ABBA");
+
+
 /*-- PSEUDOCODE --*/
 
 // check if property exists
@@ -6,15 +62,10 @@
     // if value  === "", delete property
     // else if property is not 'tracks', set value
     // else (property is 'tracks'), push value to array & set array as value
-// if false 
+// else (if false)
     // if property is not 'tracks', set value
     // else (property is 'tracks'), create new array, push value to array & set array as value
     
-
-
-
-
-
 
 
 // First draft (functional)

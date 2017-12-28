@@ -1,5 +1,13 @@
 
+/*-- PSEUDOCODE --*/
 
+// deduct 'price' from 'cash' 
+    // difference is change needed
+// total all values in 'cid' array
+// check difference between change needed & 'cid' total
+    // if change needed > 'cid' total, return 'insufficient funds'
+    // if change needed === 'cid' total, return 'closed'
+    // else return exact change in highest to lowest order (use as many of the highest value array items as are available before moving on to next highest value)
 
 
 /*-- ASSIGNMENT --*/

@@ -1,4 +1,29 @@
 
+/* first part of logic - getting value of change needed & assessing how much cash is in the drawer */ 
+function checkCashRegister(price, cash, cid) {
+  var changeNeeded = (cash - price);
+  
+  var cashOnHand = 0;
+  cid.forEach(function(el) {
+    var val = el[1];
+    cashOnHand = val + cashOnHand;
+  });
+  
+  if (changeNeeded > cashOnHand) {
+    return "Insufficient Funds";
+  } else if (changeNeeded === cashOnHand) {
+    return "Closed";
+  } else {
+    return "here is your change";
+  }
+}
+
+
+
+checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
+
+
+
 /*-- PSEUDOCODE --*/
 
 // deduct 'price' from 'cash' 

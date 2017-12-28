@@ -9,12 +9,26 @@ function checkCashRegister(price, cash, cid) {
     cashOnHand = val + cashOnHand;
   });
   
-  if (changeNeeded > cashOnHand) {
-    return "Insufficient Funds";
-  } else if (changeNeeded === cashOnHand) {
+  if (changeNeeded === cashOnHand) {
     return "Closed";
+  } else if (changeNeeded > cashOnHand) {
+    return "Insufficient Funds";
   } else {
     return "here is your change";
+    // algorithm to cycle through array checking value against cash on hand 
+      // ONE HUNDRED = 100.00, TWENTY = 20.00, TEN = 10.00, FIVE = 5.00, ONE = 1.00, QUARTER = .25, DIME = .10, NICKEL = .05, PENNY = .01 
+      // map array to these values, divide the currency available by those values to get number on hand
+      // e.g. for [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]] => 100.00 = 1, 20.00 = 3, 10.00 = 2, 5.00 = 11, 1.00 = 90, .25 = 17, .10 = 31, .05 = 41, .01 = 101  
+      
+    var value = [.01, .05, .10, .25, 1.00, 5.00, 10.00, 20.00, 100.00];  
+
+    //function howMany() {   
+     for (var i = 0; i<cid.length; i++) {
+      cid[i][1] = Math.round(cid[i][1]/value[i]);
+     }
+    //}
+    //howMany();
+    
   }
 }
 

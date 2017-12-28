@@ -8,6 +8,47 @@
 // return
 
 
+function sym(args) {
+  // convert object to array
+  args = Array.prototype.slice.call(arguments);
+
+// check that item in position doesn't = item in position immediately before it, returns only unique values
+ function single(a) {
+  return a.sort().filter(function(el, pos, ary) {
+   return !pos || el != ary[pos-1];
+  }); 
+ }
+ 
+ function duplicates(b) {
+  b.forEach(function(el) {
+   return b.filter(function(el, pos, ary) {
+      var firstPos = b.indexOf(el);
+      // remove both item & value in position that matched
+      if (firstPos !== pos) {
+        b.splice(firstPos, 1);
+        b.splice(pos-1, 1); 
+      }
+    });
+  }); 
+ }
+ var arr1 = arguments[0];
+  for (var a = 1; a < args.length; a++) {
+    arr1 = single(arr1);
+    var arr2 = arguments[a];
+    arr2 = single(arr2);
+    var merged = arr1.concat(arr2);
+    duplicates(merged);
+    arr1 = merged;
+  }
+      
+
+ var sorted = arr1.sort();
+  console.log(sorted);
+  return sorted;
+}
+
+sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]);
+
 
 
 
@@ -26,6 +67,7 @@
 // return new array
 
 /* works but not not passing fcc checks */ 
+/* only good for up to 3 arrays */
 
 function sym(args) {
   var returnArr = []; 
@@ -70,13 +112,8 @@ function sym(args) {
     }
    }
  }
- 
- function ascending ( a, b ) {
-  return a-b;
- }
 
-
- var sorted = returnArr.sort( ascending );
+ var sorted = returnArr.sort();
  return sorted;
   
 }

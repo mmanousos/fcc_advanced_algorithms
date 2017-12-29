@@ -1,6 +1,58 @@
 
+/* pushes to 2D Array */ 
+
+function checkCashRegister(price, cash, cid) {
+ var changeNeeded = (cash - price);
+
+ var cashOnHand = 0;
+  cid.forEach(function(el) {
+    var val = el[1];
+    cashOnHand = val + cashOnHand;
+  });
+  
+  if (changeNeeded === cashOnHand) {
+    return "Closed";
+  } else if (changeNeeded > cashOnHand) {
+    return "Insufficient Funds";
+  } else {    
+    var quantities = [];
+    function getQuant() {  
+    var value = [.01, .05, .10, .25, 1.00, 5.00, 10.00, 20.00, 100.00];  
+    for (var i = 0; i<cid.length; i++) {
+     var valueNum = Math.round(cid[i][1]/value[i]);
+     quantities.push(valueNum);
+    }
+   }
+  getQuant();
+    
+ var change = []; 
+  for (var index = 8; index > 0; index--) {
+    var value = [.01, .05, .10, .25, 1.00, 5.00, 10.00, 20.00, 100.00];  
+    var howMany = changeNeeded / value[index];
+    if (howMany > 1) {
+     if (quantities[index] >= howMany) {
+        var rows = 0;
+        change.push([]);
+        change[rows].push(cid[index][0]);
+        var changeVal = value[index]*howMany;
+        change[rows].push(changeVal);
+        changeNeeded = changeNeeded - changeVal;  
+        rows ++;
+     } else {
+      return "Insufficient Funds";
+     }
+    }
+   }
+  }
+return change;
+}
+
+checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
 
 
+/* starting to check values of change available & generate change
+works for specific change (e.g. $.50 all in quarters), but not for split change.*/ 
+/* also doesn't push to 2D array */ 
 function checkCashRegister(price, cash, cid) {
  var changeNeeded = (cash - price);
 

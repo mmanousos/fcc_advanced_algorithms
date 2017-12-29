@@ -1,4 +1,52 @@
 
+
+
+function checkCashRegister(price, cash, cid) {
+ var changeNeeded = (cash - price);
+
+ var cashOnHand = 0;
+  cid.forEach(function(el) {
+    var val = el[1];
+    cashOnHand = val + cashOnHand;
+  });
+  
+  if (changeNeeded === cashOnHand) {
+    return "Closed";
+  } else if (changeNeeded > cashOnHand) {
+    return "Insufficient Funds";
+  } else {    
+    var quantities = [];
+    function getQuant() {  
+    var value = [.01, .05, .10, .25, 1.00, 5.00, 10.00, 20.00, 100.00];  
+    for (var i = 0; i<cid.length; i++) {
+     var valueNum = Math.round(cid[i][1]/value[i]);
+     quantities.push(valueNum);
+    }
+   }
+  getQuant();
+    
+ var change = []; 
+  for (var index = 8; index > 0; index--) {
+    var value = [.01, .05, .10, .25, 1.00, 5.00, 10.00, 20.00, 100.00];  
+    var howMany = changeNeeded / value[index];
+    if (howMany > 1) {
+     if (quantities[index] >= howMany) {
+      change.push(cid[index][0]);
+      var changeVal = value[index]*howMany;
+      change.push(changeVal);
+      changeNeeded =- changeVal;   
+     } else {
+      return "Insufficient Funds";
+     }
+    }
+   }
+  }
+return change;
+}
+
+
+
+
 /* first part of logic - getting value of change needed & assessing how much cash is in the drawer */ 
 function checkCashRegister(price, cash, cid) {
   var changeNeeded = (cash - price);

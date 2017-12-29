@@ -1,3 +1,69 @@
+/* final - accounts for the change not being exact even if the cash in drawer is more than the change needed */ 
+
+function checkCashRegister(price, cash, cid) {
+ var changeNeeded = (cash - price);
+
+ var cashOnHand = 0;
+  cid.forEach(function(el) {
+    var val = el[1];
+    cashOnHand = val + cashOnHand;
+  });
+ cashOnHand = Math.round(100*cashOnHand)/100;
+
+  
+  if (changeNeeded === cashOnHand) {
+    return "Closed";
+  } else if (changeNeeded > cashOnHand) {
+    return "Insufficient Funds";
+  } else {    
+    var quantities = [];
+    function getQuant() {  
+    var value = [.01, .05, .10, .25, 1.00, 5.00, 10.00, 20.00, 100.00];  
+    for (var i = 0; i<cid.length; i++) {
+     var valueNum = Math.round(cid[i][1]/value[i]);
+     quantities.push(valueNum);
+    }
+   }
+  getQuant();
+    
+ var change = []; 
+ var rows = 0;
+  for (var index = 8; index > -1; index--) {
+    var value = [.01, .05, .10, .25, 1.00, 5.00, 10.00, 20.00, 100.00];  
+    var howMany = changeNeeded / value[index];
+    if (howMany > 1) {
+      if (quantities[index] >= howMany) {
+        howMany = Math.round(howMany*100)/100;
+        change.push([]);
+        var stripped = Math.trunc(howMany);
+        change[rows].push(cid[index][0]);
+        var changeVal = value[index]*stripped;
+        change[rows].push(changeVal);
+        changeNeeded = changeNeeded - changeVal;  
+        changeNeeded = Math.round(changeNeeded*100)/100;
+        rows ++;
+      } else if (quantities[index] < howMany) {
+        change.push([]);
+        change[rows].push(cid[index][0]);
+        var changeVal = cid[index][1];
+        change[rows].push(changeVal);
+        changeNeeded = changeNeeded - changeVal;
+        changeNeeded = Math.round(changeNeeded*100)/100;
+        rows ++;
+      }
+     } 
+    }
+   }
+
+ if (changeNeeded !== 0) {
+   return "Insufficient Funds";
+ } else {
+   return change;
+ }
+}
+
+checkCashRegister(3.26, 100.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
+
 
 /* splits change, but doesn't account for there not being enough overall to make exact change, I believe */
 
@@ -55,7 +121,7 @@ function checkCashRegister(price, cash, cid) {
      } 
     }
    }
-
+    
 return change;
 }
 

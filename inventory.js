@@ -1,3 +1,61 @@
+/* final solution - refined script to account for empty first array */
+
+function updateInventory(arr1, arr2) {
+    // All inventory must be accounted for or you're fired!
+   console.log(arr1.length);
+   console.log(arr2.length);
+   var inventory = [];
+   
+ if (arr1.length === 0) { 
+  inventory = arr2; 
+ } else {
+  check();
+   // add all new items to exisiting inventory
+  inventory = arr1.concat(arr2); 
+ }
+
+ function check() {
+  arr2.forEach(function(el, index, array) {
+   var list = arr1;
+   var item = el[1];
+    // checks if the item already exists & updates the quantity
+   for (var i = 0; i < array.length; i ++) {
+    var loc = list[i].indexOf(item);
+    if (loc > 0) {
+      arr1[i][0] = arr1[i][0] + el[0]; 
+       // removes item from new inventory list
+      arr2.splice(index, 1);
+    }  
+   } 
+  });
+ }
+ 
+ // get all item names in inventory
+ var invItems = [];
+ inventory.forEach(function(el) {
+  invItems.push(el[1]);
+});
+
+// sort the items alphabetically
+ invItems.sort();
+  
+// push items into new array alphabetically    
+ var updatedInventory = [];  
+ invItems.forEach(function(element, index) {
+  for (var m = 0; m < inventory.length; m++) {
+   var where = inventory[m].indexOf(element); 
+   if (where > 0) {
+    updatedInventory.push(inventory[m]);
+   }
+  }
+ });
+
+ return updatedInventory;
+
+}
+
+updateInventory([[21, "Bowling Ball"], [2, "Dirty Sock"], [1, "Hair Pin"], [5, "Microphone"]], []);
+
 
 /* slight refinement to script checking if items exist */ 
 function updateInventory(arr1, arr2) {

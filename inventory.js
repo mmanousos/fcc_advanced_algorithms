@@ -1,4 +1,48 @@
 
+/* checks for existing items, updates their quantities, and adds new items to end of inventory */ 
+
+function updateInventory(arr1, arr2) {
+    // All inventory must be accounted for or you're fired!
+   
+
+ arr2.forEach(function(el, index) {
+  var list = arr1;
+  var item = el[1];
+  console.log(item);
+  // checks if the item already exists & updates the quantity
+  for (var i = 0; i <= 3; i ++) {
+   var loc = arr1[i].indexOf(item);
+   if (loc > 0) {
+     arr1[i][0] = arr1[i][0] + el[0]; 
+     // removes item from new inventory list
+     arr2.splice(index, 1);
+   }  
+  } 
+});
+// add all new items to exisiting inventory
+ var inventory = arr1.concat(arr2);
+ 
+ // alphabetize, then
+
+ return inventory;
+
+}
+
+
+/* Way to sort alphabetically */
+
+// create an array of all the types of items in newInv
+var items = [];
+newInv.forEach(function(el) {
+  items.push(el[1]);
+});
+
+// sort the items in newInv alphabetically
+var sorted = items.sort();
+
+// check them against the items in curInv
+
+
 
 /*-- PSEUDOCODE --*/
 

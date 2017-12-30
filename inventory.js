@@ -1,4 +1,13 @@
 
+
+/*-- PSEUDOCODE --*/
+
+// check each item from second array against items in first array (indexOf?)
+    // if item already exists, add value from second array to first array
+    // if item doesn't exist, add it + value to first array
+    // (not sure how to add it in the right position - maybe sort after the fact? but not sure that would look at second values in arrays)
+
+
 /*-- ASSIGNMENT --*/
 
 Inventory Update

@@ -1,4 +1,31 @@
 
+/* successfully checks for single characters & for all repeats */ 
+
+
+
+function permAlone(str) {
+  var single = /^.{1}$/;
+  var singleTest = single.test(str); 
+  var first = str.charAt(0);
+  if (singleTest === true) {
+    return 1;
+  }
+  
+  function repeatCheck() { 
+   for (var i = 1; i < str.length; i++) {
+    if (str.charAt(i) === first) {
+      return 0;
+    }
+   }
+  }
+  repeatCheck(); 
+  
+}
+
+permAlone('aaa');
+
+
+
 /*-- PSEUDOCODE --*/ 
 
 If agument only contains repeated letters, return 0. 

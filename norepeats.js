@@ -1,4 +1,13 @@
 
+/*-- PSEUDOCODE --*/ 
+
+If agument only contains repeated letters, return 0. 
+If argument contains only 1 letter, return 1. 
+
+
+/* doesn't help (purely coincidental) */ 
+aabb = 4 characters with 2 repeats; answer = 2^3 
+
 
 /*-- ASSIGNMENT --*/
 
@@ -23,3 +32,8 @@ permAlone("zzzzzzzz") should return 0.
 permAlone("a") should return 1.
 permAlone("aaab") should return 0.
 permAlone("aaabb") should return 12.
+
+
+
+    
+    

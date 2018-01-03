@@ -50,6 +50,57 @@ function permAlone(str) {
 permAlone('abc');
 
 
+/* FCC basic solution, includes cleaner way to write the swap portion of Heap's algorithm */
+// pushes joined arrays as strings into holder 'permutations' array to filter later. (inefficient because uses more memory?)
+
+
+function permAlone(str) {
+
+  // Create a regex to match repeated consecutive characters.
+  var regex = /(.)\1+/g;
+
+  // Split the string into an array of characters.
+  var arr = str.split('');
+  var permutations = [];
+  var tmp;
+
+  // Return 0 if str contains same character.
+  if (str.match(regex) !== null && str.match(regex)[0] === str) return 0;
+
+  // Function to swap variables' content.
+  function swap(index1, index2) {
+    tmp = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = tmp;
+  }
+
+  // Generate arrays of permutations using the algorithm.
+  function generate(int) {
+    if (int === 1) {
+      // Make sure to join the characters as we create  the permutation arrays
+      permutations.push(arr.join(''));
+    } else {
+      for (var i = 0; i != int; ++i) {
+        generate(int - 1);
+        swap(int % 2 ? 0 : i, int - 1);
+      }
+    }
+  }
+
+  generate(arr.length); // *passes in length of the array as the integer in question for Heap's algorithm. presume this also passes in the array itself.
+
+  // Filter the array of repeated permutations.
+  var filtered = permutations.filter(function(string) {
+    return !string.match(regex);
+  });
+
+  // Return how many have no repetitions.
+  return filtered.length;
+}
+
+// Test here.
+permAlone('aab');
+
 
 /* corrected Heap's algorithm for accurate permutation outputs */ 
 

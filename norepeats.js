@@ -1,3 +1,56 @@
+/* final solution - doesn't require original checks for repeats or single character strings */ 
+
+
+function permAlone(str) {
+  var counter = 0;  // create variable to hold number of permutations without duplicates 
+  var open = str.split(''); // split string into array to sort permutations
+ 
+    // function to check for duplicates and count non duplicate permutations
+ function findDupe(string) {  
+ var dupeCheck = /(.)\1/gi; // look for duplicated characters (character immediately followed by itself)
+ var repeatTest = dupeCheck.test(string); // tests if dupe exists in string T/F
+  if (repeatTest !== true) { // if doesn't exist
+    counter++; // increase counter by 1
+    console.log("counter is " + counter);
+  } 
+ }
+
+    // helper function to swap position of elements in an array
+ function swap(array, posA, posB) {
+   var temp = array[posA]; 
+   array[posA] = array[posB]; 
+   array[posB] = temp; 
+ }
+  
+    
+    //Heap's algorithm for generating permutations with the addition of joining the array back to a string (line 29) to then check for duplicates in the string (line 31)
+  function permute(array, n) {
+    n = n || array.length; 
+    if (n === 1) {
+     console.log(array);
+    var merge = array.join('');
+     console.log(merge);
+    findDupe(merge);
+    } else {
+      for (var i = 1; i <= n; i += 1) {
+       permute(array, n-1);
+       if (n % 2) {
+        var j = 1;     
+       } else {
+        var j = i; 
+       } 
+     swap(array, j-1, n-1);
+    }
+   }
+  }
+ permute(open);
+ return counter;
+}
+
+permAlone('abc');
+
+
+
 /* corrected Heap's algorithm for accurate permutation outputs */ 
 
 

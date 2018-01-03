@@ -1,3 +1,38 @@
+/* corrected Heap's algorithm for accurate permutation outputs */ 
+
+
+function permAlone(str) {
+  var open = str.split('');
+ 
+ function swap(array, posA, posB) {
+   var temp = array[posA]; 
+   array[posA] = array[posB]; 
+   array[posB] = temp; 
+ }
+  
+  function permute(array, n) {
+    n = n || array.length; 
+    if (n === 1) {
+      console.log(array);
+    } else {
+      for (var i = 1; i <= n; i += 1) {
+        permute(array, n-1);
+        if (n % 2) {
+          var j = 1;     
+        } else {
+          var j = i; 
+        } 
+      swap(array, j-1, n-1);
+      }
+    }
+  }
+permute(open);
+}
+
+permAlone('abc');
+
+
+
 /* uses Heap's algorithm to generate all permutations */ 
 // may make singleTest redundant
 

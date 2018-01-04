@@ -1,4 +1,24 @@
 
+/*-- PSEUDOCODE --*/
+
+
+var axis = avgAlt + 6367.4447; //earth's radius 
+var a = Math.pow(axis, 3); // Math.pow(base,exponent)
+var root = Math.sqrt(a/398600.4418) // divided by gravitational force of earth
+var period = Math.round(2 * Math.PI * root); 
+
+// add this property to object (orbitalPeriod: period)
+// remove avgAlt property from object (delete myobj.a;)
+
+
+
+// Use Kepler's Third Law to calculate the orbital period
+
+T = 2 * (pi) * the square root of ((earth's radius + avgAlt)^3 / GM)
+
+where T = time in seconds & GM = earth's gravitational parameter (provided below).
+
+
 /*-- ASSIGNMENT --*/
 
 Map the Debris

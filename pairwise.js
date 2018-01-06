@@ -1,9 +1,73 @@
 
 function pairwise(arr, arg) {
-  return arg;
+ var index = [];
+ 
+ function checkVal(array) {
+   for (var i = 0; i < array.length; i++) {
+     if ( array[i] < arg ) {
+       console.log("element is " + array[i]);
+       var pos = i;
+       console.log("index of that element is " + pos);
+       var arg2 = arg - array[i];
+       var pos2 = array.indexOf(arg2, i+1);
+       console.log("index of pair element is " + pos2);
+       console.log("the position of that element in index array is " + index.indexOf(pos2));
+       if (index.indexOf(pos2) !== -1) {
+         for (var k = i+1; k < array.length; k++) {
+          pos2 = array.indexOf(arg2, k); 
+         }
+         if ((index.indexOf(pos2) === -1) && (pos2 >= 0)) {
+         index.push(pos);
+         index.push(pos2);
+         }
+         
+       } else if (pos2 >= 0) {
+         index.push(pos);
+         index.push(pos2);
+        if (index.length > arr.length) {
+           index.pop();
+           index.pop();
+         } 
+        }
+       }
+     }
+   }
+ 
+    
+ checkVal(arr);     
+ 
+ return index.reduce(function(sum, value) {
+  return sum + value;
+ }, 0);
+    
+    
 }
 
 pairwise([1,4,2,3,0,5], 7);
+
+
+ /* Prelim code */
+
+
+ function checkVal(array) {
+   array.forEach(function(element) {
+     if (element < arg) {
+       console.log("element is " + element);
+       var pos = array.indexOf(element);
+       console.log("index of that element is " + pos);
+       var arg2 = arg - element; 
+       var pos2 = array.indexOf(arg2);
+       if (pos2 >= 0) {
+         index.push(pos);
+         index.push(pos2);
+         if (index.length > arr.length) {
+           index.pop();
+           index.pop();
+         }
+       }
+     }
+   }); 
+ }
 
 
 

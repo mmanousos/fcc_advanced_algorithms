@@ -1,4 +1,25 @@
 
+function pairwise(arr, arg) {
+  return arg;
+}
+
+pairwise([1,4,2,3,0,5], 7);
+
+
+
+/*-- PSEUDOCODE --*/
+
+// create new array to hold index numbers of matching values
+// check each element in the array to find if it is less than the argument
+// if yes, 
+    // get the index # of that value (push to created array)
+    // subtract that value from the argument
+    // remove from array? 
+// then check if one of the additional elements in the array === the remainder value
+    // get the index # of that value as well. (push to created array)
+// reduce values of created array to single value
+// return reduced value
+
 
 /*-- ASSIGNMENT --*/
 

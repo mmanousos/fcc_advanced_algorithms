@@ -46,6 +46,77 @@ function pairwise(arr, arg) {
 pairwise([1,4,2,3,0,5], 7);
 
 
+/* fcc intermediate solution */
+// more refined than mine but employs the same logic in a much cleaner way. 
+// "for (var a in arr)" converts the index elements to strings. 
+// "+a" and "+i" converts them back to integers to push them to the placeholder array and to check for them there.
+
+function pairwise(arr, arg) {
+  // Create empty array to keep the arrays we will add.
+  var index = [];
+
+  // Loop to check the first number.
+  for (var a in arr) {
+    // temporal first number.
+    var temp = arr[a];
+
+    // Second loop to check against the first number.
+    for (var i = 1; i < arr.length; i++) {
+      // temporal second number.
+      var temp2 = arr[i];
+
+      // Key element, this check to make sure that the numbers add to arg
+      // also that the second index is greater than the first, and that neither
+      // of those indices are already on the array.
+      if (temp + temp2 === arg && i > a && index.indexOf(+a) === -1 && index.indexOf(+i) === -1) {
+        // if true then add both indices as integers then stop checking to avoid repeats.
+        index.push(+a, +i);
+        break;
+      }
+    }
+  }
+
+  // After the two loops are done, check if index is empty to return 0
+  // or if it is not, then use Array.reduce(callbackFunc) to return the sum
+  // of the numbers.
+  if (index.length >= 1) {
+    var addAll = function(a, b) {
+      return a + b;
+    };
+
+    return index.reduce(addAll);
+  } else
+      return 0;
+}
+
+// test here
+pairwise([1,4,2,3,0,5], 7);
+
+
+/* another solution from fcc forums that implements the idea I had of removing the values that had been used but didn't know how to go about while still preserving the original array index positions to calculate the correct sum */
+// this script replaces deleted values with "undefined" so they can not be returned repeatedly as the loop executes 
+// removes the need to check if those index values have already been used or to reduce values from an array before returning the result.
+
+function pairwise(arr, arg) {
+    var result = 0;
+  for(var x = 0 ; x <arr.length; x++){
+    for(var y = 0; y <arr.length; y++){
+      if(x === y){
+        break;
+     }
+      if(arr[x] + arr[y] === arg){
+        result += x + y;
+        delete arr[x];
+        delete arr[y];
+      } 
+    }
+  }
+  return result;
+}
+pairwise([1,4,2,3,0,5], 7);
+
+
+
  /* Prelim code */
 
 
